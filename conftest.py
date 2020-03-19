@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/3/18 12:53
 # @File    : conftest.py
-import pytest, os
+import pytest, os, re, datetime
 from selenium import webdriver
 from py._xmlgen import html
 
@@ -23,27 +23,33 @@ def pytest_runtest_makereport(item):
     if report.when == 'call' or report.when == "setup":
         xfail = hasattr(report, 'wasxfail')
         if (report.skipped and xfail) or (report.failed and not xfail):
-            file_name = os.path.join(os.getcwd(),'report','picture',report.nodeid.replace("::", "_") + ".png")
-            print(os.getcwd())
-            _capture_screenshot(file_name)
+            # file_name = os.path.join(os.getcwd(),'report','picture',report.nodeid.replace("::", "_").replace("/", "_") + ".png")
+            # file_name_matches = re.findall(r"(\[[\s\S]*\])", file_name)
+            # CURRENT_TIME = datetime.datetime.now().strftime("%y_%m_%d_%H_%M_%S")
+            # file_name = file_name.replace(file_name_matches[0], CURRENT_TIME)
+            file_name = report.nodeid.replace("::", "_") + ".png"
+            print(file_name)
+            screen_img = _capture_screenshot()
+            # _capture_screenshot(file_name)
             if file_name:
-                # html = '<div><img src="data:image/png;base64,%s" alt="screenshot" style="width:600px;height:300px;" ' \
-                #        'onclick="window.open(this.src)" align="right"/></div>' % screen_img
-                html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px;" ' \
-                       'onclick="window.open(this.src)" align="right"/></div>' % file_name
+                html = '<div><img src="data:image/png;base64,%s" alt="screenshot" style="width:600px;height:300px;" ' \
+                       'onclick="window.open(this.src)" align="right"/></div>' % screen_img
+                # html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px;" ' \
+                #        'onclick="window.open(this.src)" align="right"/></div>' % file_name
                 extra.append(pytest_html.extras.html(html))
 
         report.extra = extra
         report.description = str(item.function.__doc__)
         report.nodeid = report.nodeid.encode("utf-8").decode("unicode_escape")
 
-
-def _capture_screenshot(file_name):
+def _capture_screenshot():
+# def _capture_screenshot(file_name):
     """
     截图保存为base64  ///  png
     :return:
     """
-    return _driver.get_screenshot_as_file(file_name)
+    return _driver.get_screenshot_as_base64()
+    # return _driver.get_screenshot_as_file(file_name)
 
 
 # 修改Environment
@@ -60,7 +66,7 @@ def pytest_html_results_summary(prefix):
     prefix.extend([html.p("所属部门: SVD测试中心")])
     prefix.extend([html.p("测试人员: blake.wang")])
 
-
+"""
 def pytest_html_results_table_header(cells):
     cells.insert(1, html.th('Description'))
     # cells.insert(2, html.th('Test_nodeid'))
@@ -74,6 +80,7 @@ def pytest_html_results_table_row(report, cells):
     cells.pop(-1)  # 删除link列
     # cells.pop(2)
 
+"""
 
 '''
 fixture作用范围

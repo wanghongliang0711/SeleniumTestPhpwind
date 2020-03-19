@@ -5,6 +5,14 @@
 
 class LoginData(object):
     """"用户登录测试数据"""
+    login_pass_data = [
+        (
+            "test1",
+            "123456",
+            "test1"
+        )
+    ]
+
     login_fail_data = [
         (
             "wang",

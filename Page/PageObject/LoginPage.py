@@ -38,5 +38,8 @@ class LoginPage(BasePage):
     def get_error_text(self):
         return self.get_element_text(*LoginPageElements.login_error_text)
 
+    def get_pass_text(self):
+        return self.get_element_text(*LoginPageElements.login_pass_text)
+
     def click_return_continue_login(self):
         return self.click(*LoginPageElements.return_continue)
