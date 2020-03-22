@@ -3,6 +3,10 @@
 # @File    : conftest.py
 from Page.PageObject.LoginPage import LoginPage
 from Page.PageObject.RegisterPage import RegisterPage
+from Page.PageObject.HomePage import HomePage
+from Page.PageObject.FaTiePage import FaTiePage
+from Page.PageObject.BoardPage import BoardPage
+from data.LoginData import LoginData
 import pytest
 
 
@@ -10,8 +14,11 @@ import pytest
 def ini_pages(driver):
     login_page = LoginPage(driver)
     register_page = RegisterPage(driver)
+    home_page = HomePage(driver)
+    fatie_page = FaTiePage(driver)
+    board_page = BoardPage(driver)
     print("********ini_pages(driver)")
-    yield driver, login_page, register_page
+    yield driver, login_page, register_page, home_page, fatie_page, board_page
 
 
 @pytest.fixture(scope='function')
@@ -23,6 +30,11 @@ def open_url(ini_pages):
     driver.delete_all_cookies()
 
 
-
-
-
+@pytest.fixture(scope='class')
+def login(ini_pages):
+    driver, login_page, register_page, home_page, fatie_page, board_page = ini_pages
+    # login_page.open_url()
+    login_page.login(LoginData.login_pass_data[0][0], LoginData.login_pass_data[0][1])
+    print("********login(ini_pages)")
+    yield login_page, register_page, home_page, fatie_page, board_page
+    driver.delete_all_cookies()

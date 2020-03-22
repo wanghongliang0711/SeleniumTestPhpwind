@@ -5,7 +5,7 @@ from data.RegisterData import RegisterDate
 import pytest
 
 
-# @pytest.mark.skip(reason="暂时跳过")
+@pytest.mark.skip(reason="暂时跳过")
 class TestRegister(object):
     register_data = RegisterDate
 

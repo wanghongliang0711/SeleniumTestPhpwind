@@ -27,6 +27,24 @@ class RegisterElements(object):
     register_pass_text = ("xpath", '//*[@id="main"]/div[2]/div[4]/form/table/tbody/tr[1]/td')
 
 
+class HomePageElements(object):
+    """首页element"""
+    PHPwind_Board = ("xpath", "//a[contains(@id,'fn_')]")
+
+
+class BoardPageElements(object):
+    """版块element"""
+    publish_btn = ("id", "td_post")
+
+class FaTieElements(object):
+    """发帖element"""
+    title = ("id", "atc_title")
+    iframe = ("id", "iframe")
+    text = ("xpath", "/html/body")
+    sendBtn = ("xpath", "//input[@value='提 交']")
+    send_pass_text = ("id", "subject_tpc")
+
+
 
 # "//a[@href="u.php?action=show"]"
 # "//*[@id="td_userinfo_more"]/span"
