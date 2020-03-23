@@ -17,7 +17,7 @@ class TestLogin(object):
         actual = login_page.get_pass_text()
         assert actual == expect, f"断言失败 actual:{actual}, expect:{expect}"
 
-    @pytest.mark.skip(reason="暂时跳过")
+    # @pytest.mark.skip(reason="暂时跳过")
     @pytest.mark.parametrize('username, password, expect', login_data.login_fail_data)
     def test_fail(self, open_url, username, password, expect):
         """登录失败测试"""

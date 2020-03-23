@@ -7,7 +7,6 @@ from config.ElementConfig import LoginPageElements
 
 class LoginPage(BasePage):
 
-
     def login(self, username, password):
         """登录流程"""
         self.open_url()

@@ -32,9 +32,17 @@ class HomePageElements(object):
     PHPwind_Board = ("xpath", "//a[contains(@id,'fn_')]")
 
 
+class ThemePostElements(object):
+    """主题帖页面"""
+    next_theme = ("link_text", "下一主题")
+    theme_name = ("xpath", "//div[@id='breadCrumb']/a[3]")
+
+
 class BoardPageElements(object):
     """版块element"""
     publish_btn = ("id", "td_post")
+    post_tie_zi = ("xpath", "//a[contains(@id,'a_ajax_')]")
+
 
 class FaTieElements(object):
     """发帖element"""
@@ -43,7 +51,7 @@ class FaTieElements(object):
     text = ("xpath", "/html/body")
     sendBtn = ("xpath", "//input[@value='提 交']")
     send_pass_text = ("id", "subject_tpc")
-
+    send_fail_text = ("xpath", '//div[@id="box_container"]/div/div[2]/p')
 
 
 # "//a[@href="u.php?action=show"]"

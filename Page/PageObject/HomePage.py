@@ -7,6 +7,7 @@ from Page.BasePage import BasePage
 from config.ElementConfig import HomePageElements
 import random
 
+
 class HomePage(BasePage):
     """首页"""
 

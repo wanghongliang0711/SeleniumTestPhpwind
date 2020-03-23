@@ -6,6 +6,7 @@ from Page.PageObject.RegisterPage import RegisterPage
 from Page.PageObject.HomePage import HomePage
 from Page.PageObject.FaTiePage import FaTiePage
 from Page.PageObject.BoardPage import BoardPage
+from Page.PageObject.ThemePostPage import ThemePostPage
 from data.LoginData import LoginData
 import pytest
 
@@ -17,8 +18,9 @@ def ini_pages(driver):
     home_page = HomePage(driver)
     fatie_page = FaTiePage(driver)
     board_page = BoardPage(driver)
+    theme_page = ThemePostPage(driver)
     print("********ini_pages(driver)")
-    yield driver, login_page, register_page, home_page, fatie_page, board_page
+    yield driver, login_page, register_page, home_page, fatie_page, board_page, theme_page
 
 
 @pytest.fixture(scope='function')
@@ -32,9 +34,9 @@ def open_url(ini_pages):
 
 @pytest.fixture(scope='class')
 def login(ini_pages):
-    driver, login_page, register_page, home_page, fatie_page, board_page = ini_pages
+    driver, login_page, register_page, home_page, fatie_page, board_page, theme_page = ini_pages
     # login_page.open_url()
     login_page.login(LoginData.login_pass_data[0][0], LoginData.login_pass_data[0][1])
     print("********login(ini_pages)")
-    yield login_page, register_page, home_page, fatie_page, board_page
+    yield login_page, register_page, home_page, fatie_page, board_page, theme_page
     driver.delete_all_cookies()

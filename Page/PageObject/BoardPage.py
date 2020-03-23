@@ -12,3 +12,13 @@ class BoardPage(BasePage):
 
     def click_publish(self):
         return self.click(*BoardPageElements.publish_btn)
+
+    def all_theme(self):
+        return self.find_Elements(*BoardPageElements.post_tie_zi)
+
+    def click_first_theme(self):
+        return self.click(*BoardPageElements.post_tie_zi)
+
+    def all_theme_name(self):
+        all_theme = self.all_theme()
+        return [name.text for name in all_theme]

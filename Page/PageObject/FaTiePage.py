@@ -39,3 +39,6 @@ class FaTiePage(BasePage):
 
     def get_pass_text(self):
         return self.get_element_text(*FaTieElements.send_pass_text)
+
+    def get_fail_text(self):
+        return self.get_element_text(*FaTieElements.send_fail_text)
