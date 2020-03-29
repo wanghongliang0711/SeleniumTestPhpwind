@@ -42,6 +42,9 @@ class BoardPageElements(object):
     """版块element"""
     publish_btn = ("id", "td_post")
     post_tie_zi = ("xpath", "//a[contains(@id,'a_ajax_')]")
+    move_to_type_view = ("id", "td_special")
+    type_view_all = "link_text"
+    select_orderway = ("name", "orderway")
 
 
 class FaTieElements(object):

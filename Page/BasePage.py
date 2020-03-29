@@ -4,6 +4,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
 
 
 class BasePage(object):
@@ -134,3 +136,27 @@ class BasePage(object):
                 until(EC.visibility_of_element_located((self.byDic[by], locator)))
         except Exception as t:
             print('error: found "{}" timeout！'.format(locator), t)
+
+    def move_to_element(self, by, locator):
+        print('info:move_to_element "{}" to be located'.format(locator))
+        try:
+            element = self.find_Element(by, locator)
+            ActionChains(self.driver).move_to_element(element).perform()
+        except Exception as e:
+            print(f"move_to_element error found, element:{locator}", e)
+
+    def select_by_visible_text(self, by, locator, text):
+        print('info:select_by_visible_text "{}" to be located'.format(locator))
+        try:
+            element = self.find_Element(by, locator)
+            Select(element).select_by_visible_text(text)
+        except Exception as e:
+            print(f"select_by_visible_text error found, element:{locator}", e)
+
+    def select_first_text(self, by, locator):
+        print('info:select_first_text "{}" to be located'.format(locator))
+        try:
+            element = self.find_Element(by, locator)
+            return Select(element).first_selected_option.text
+        except Exception as e:
+            print(f"select_first_text error found, element:{locator}", e)
