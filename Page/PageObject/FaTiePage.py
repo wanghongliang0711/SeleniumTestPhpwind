@@ -3,6 +3,8 @@
 @file: FaTiePage.py
 @time: 2020/3/22 15:30 
 """
+import time
+
 from Page.BasePage import BasePage
 from config.ElementConfig import FaTieElements
 # import time
@@ -16,6 +18,9 @@ class FaTiePage(BasePage):
         self.switch_frame()
         self.input_main_text(text)
         self.switch_default_frame()
+        time.sleep(3)
+        self.move_page(0, 600)
+        time.sleep(3)
         self.click_send_btn()
 
     def clear_title(self):

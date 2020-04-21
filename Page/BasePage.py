@@ -145,6 +145,15 @@ class BasePage(object):
         except Exception as e:
             print(f"move_to_element error found, element:{locator}", e)
 
+    # 移动页面
+    def move_page(self, x, y):
+        print(f'info:move_page x--> "{x}"  y-->"{y}"')
+        try:
+            self.driver.execute_script('window.scrollBy(0,600)')
+        except Exception as e:
+            print(f"move_page error. ", e)
+
+
     def select_by_visible_text(self, by, locator, text):
         print('info:select_by_visible_text "{}" to be located'.format(locator))
         try:

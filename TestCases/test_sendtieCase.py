@@ -7,7 +7,7 @@ import pytest
 from data.SendTieData import SendTieData
 
 
-@pytest.mark.skip(reason="暂时跳过")
+# @pytest.mark.skip(reason="暂时跳过")
 class TestSendTie(object):
     """测试发帖"""
     success_data = SendTieData.send_pass_data

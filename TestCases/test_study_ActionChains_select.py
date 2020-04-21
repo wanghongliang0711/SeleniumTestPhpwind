@@ -6,7 +6,7 @@
 import pytest
 from data.ActionChainsDate import ActionChainsData
 
-
+@pytest.mark.skip(reason="暂时跳过")
 class TestStudyActionChainsSelect(object):
     """学习ActionChains 和 Select"""
     type_view_data = ActionChainsData.type_view_data
